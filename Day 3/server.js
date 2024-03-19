@@ -23,6 +23,11 @@ app.get('/idli', (req,res) => {
     res.send(customisedIdli)
 })
 
+app.post('/person', (req,res) => {
+    console.log("Data is visible");
+    res.send("Data is saved")
+})
+
 app.listen(3000, () => {
     console.log("Server is running in port 3000");
 })
