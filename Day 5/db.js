@@ -1,0 +1,34 @@
+const mongoose = require('mongoose');
+
+//Define the mongoDB connection URL
+
+const mongoURL = 'mongodb://127.0.0.1:27017/hotels' //Replace 'mydatabase with your database name
+
+//set up MongoDB connection
+
+mongoose.connect(mongoURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+//GEt the default connection
+//Mongoose maintian a default connection object representing the MongoDB connection.
+
+const db = mongoose.connection;
+
+//Define event listeners for databse connection
+
+db.on('connected', () => {
+    console.log('Connected to MongoDB server');
+});
+
+db.on('error', (err) =>{
+    console.error('MongoDB connection error:', err);
+});
+
+db.on('disconnected', () => {
+    console.log('MongoDB disconnected');
+});
+
+module.exports = db;
+
