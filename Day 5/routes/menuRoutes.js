@@ -38,4 +38,6 @@ router.get('/:tasteType', async (req,res) =>{
     }
 })
 
+router.get('/menu/:taste')
+
 module.exports = router;
