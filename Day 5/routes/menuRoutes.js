@@ -51,4 +51,21 @@ res.status(500).json({error: 'Internal Server Error'});
     }
 })
 
+router.delete('/:id', async (req,res) => {
+    try{
+        const menuId = req.params.id;
+        const response = menuItems.findByIdAndRemove(menuId);
+        if(!response) {
+            return res.status(404).json({message: 'Data not found'});
+        }
+        console.log('Data Delete')
+        res.status(200).json({message: 'Menu Deleted Successfully'});
+
+    }
+    catch(err){
+        console.log(err)
+    res.status(500).json({error: 'Internal server error'});
+}
+})
+
 module.exports = router;
