@@ -12,6 +12,14 @@ const Person = require('./models/person');
 const MenuItem = require('./models/MenuItem');
 const Task = require('./models/Task');
 
+//middleware function
+const logRequest = (req, res, next) => {
+    console.log(`${new Date().toLocaleString} Request made to : ${req.originalUrl}`)
+    next();
+}
+
+
+
 app.post('/api/task', async (req,res) => {
     try{
         const data = req.body;
@@ -35,7 +43,7 @@ app.get('/api/task', async (req, res) => {
 
 }
 })
-
+app.use(logRequest);
 app.get('/', (req, res) => {
     res.send('Welcome to the hotel! How can I help you');
 });
